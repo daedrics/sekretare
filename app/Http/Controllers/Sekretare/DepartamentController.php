@@ -81,9 +81,14 @@ class DepartamentController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Departament $departament)
     {
-        //
+        $departament->delete();
+        return response()
+            ->json([
+                'message' => "Departamenti u fshi me sukses!",
+                'status' => 200
+            ], 200);
     }
 
     public function dataTable()
