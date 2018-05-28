@@ -11,15 +11,15 @@
 |
 */
 
+Auth::routes();
 Route::get('/', function () {
-    return view('welcome');
+    if(!auth()->user()){
+        return view('auth.login');
+    }
+    return redirect()->route(homeRoute());
 });
 
-Route::get('/user/','UserController@getAll');
-Auth::routes();
+Route::group([ 'middleware' => 'auth'], function () {
+    includeRouteFiles(__DIR__.'/Backend/');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
