@@ -8,15 +8,15 @@ trait ModelTrait
 
     public function getEditButtonAttribute($route)
     {
-        return '<a href="' . route($route, $this) . '" class="btn btn-xs btn-primary">
+        return '<a href="' . route($route, $this) . '" class="btn btn-sm btn-primary">
                     <i data-toggle="tooltip" data-placement="top" title="Edit" class="fa fa-pencil"></i>
                 </a> ';
     }
 
-    public function getDeleteButtonAttribute($route)
+    public function getDeleteButtonAttribute($route, $dataTable)
     {
-        return '<a onclick="deleteFunction(\'' . route($route, $this) . '\')" 
-                    class="btn btn-xs btn-danger">
+        return '<a onclick="deleteFunction(\'' . route($route, $this) . '\' , \'' . $dataTable . '\')" 
+                    class="btn btn-sm btn-danger">
                         <i data-toggle="tooltip" data-placement="top" title="Delete" class="fa fa-trash"></i>
                 </a> ';
     }
@@ -24,7 +24,7 @@ trait ModelTrait
     public function getShowButtonAttribute($route)
     {
         return '<a href="' . route($route, $this) . '" 
-        class="btn btn-xs btn-info"><i class="fa fa-search" data-toggle="tooltip" 
+        class="btn btn-sm btn-info"><i class="fa fa-search" data-toggle="tooltip" 
         data-placement="top" title="' . trans('language.view_btn') . '"></i></a> ';
     }
 

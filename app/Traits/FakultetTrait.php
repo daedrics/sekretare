@@ -14,6 +14,6 @@ trait FakultetTrait
     public function getActionButtonsAttribute()
     {
         return $this->getEditButtonAttribute('sekretare.fakultet.edit') .
-            $this->getDeleteButtonAttribute('sekretare.fakultet.destroy');
+            $this->getDeleteButtonAttribute('sekretare.fakultet.destroy','fakultetTable');
     }
 }

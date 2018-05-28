@@ -19,7 +19,11 @@
                 </li>
                 <h3 class="menu-title">Menaxho</h3><!-- /.menu-title -->
                 <li>
-                    <a href="{{route('sekretare.fakultet.index')}}"> <i class="menu-icon fa fa-users"></i>Fakultet</a>
+                    <a href="{{route('sekretare.fakultet.index')}}"> <i class="menu-icon fa fa-building-o"></i>Fakultet</a>
+                </li>
+
+                <li>
+                    <a href="{{route('sekretare.departament.index')}}"> <i class="menu-icon fa fa-briefcase"></i>Departament</a>
                 </li>
 
                 <li>
