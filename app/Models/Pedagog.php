@@ -2,11 +2,19 @@
 
 namespace App\Models;
 
+use App\Traits\ModelTrait;
+use App\Traits\PedagogTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Pedagog extends Model
 {
+
+    use ModelTrait;
+    use PedagogTrait;
+
+    protected $fillable = ['emer', 'mbiemer', 'titull', 'ID_User'];
+
     public function user()
     {
         return $this->belongsTo(User::class,'ID_User');

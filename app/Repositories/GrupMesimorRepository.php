@@ -29,7 +29,7 @@ class GrupMesimorRepository
         $array = Collection::make();
         $grupe = $this->grup_mesimor->all();
         foreach ($grupe as $grup) {
-            $array->put($grup->id, $grup->emer_G_M . ' ' . $grup->departament->emer_DEP);
+            $array->put($grup->id, $grup->emer_G_M . ' ' . $grup->departament->emer_DEP . ' '. $grup->vit_akademik->emer_V_A);
         }
         return $array->toArray();
     }

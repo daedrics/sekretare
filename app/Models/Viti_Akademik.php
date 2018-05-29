@@ -8,6 +8,7 @@ class Viti_Akademik extends Model
 {
 
     protected $table = 'viti_akademiks';
+    protected $fillable = ['emer_V_A'];
 
     public function grup_mesimor()
     {

@@ -33,6 +33,16 @@ class UserRepository
         $user->student()->create($student_data);
     }
 
+    public function createPedagog($request)
+    {
+        $user_data = $request->only(['email', 'password']);
+        $user_data['password'] = bcrypt($user_data['password']);
+        $user_data['role'] = 'pedagog';
+        $pedagog_data = $request->only(['emer', 'mbiemer', 'titull']);
+        $user = $this->user->create($user_data);
+        $user->pedagog()->create($pedagog_data);
+    }
+
     public function dataTable()
     {
         $users = $this->user->where('role', '!=', 'sekretare')->get();

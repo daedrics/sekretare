@@ -35,6 +35,7 @@
                 </div>
                 {{ Form::open(['route'=>'sekretare.student.store', 'method'=>'post']) }}
                 <div class="card-body card-block">
+
                     <div class="row form-group">
 
                         <div class="col-4">
@@ -140,6 +141,7 @@
                             <th scope="col">Grupi</th>
                             <th scope="col">Ditelindja</th>
                             <th scope="col">Regjistruar me</th>
+                            <th scope="col">Veprime</th>
                             <th scope="col">Krijuar me</th>
                         </tr>
                         </thead>
@@ -164,6 +166,12 @@
             $('#ditelindje, #date_regjistrim').datetimepicker({
                 format: 'YYYY-MM-DD'
             });
+
+            $('.select2').select2({
+                placeholder: 'Zgjidh...'
+            });
+
+
         });
     </script>
 
@@ -181,6 +189,7 @@
                     {data: 'grupi', name: 'grupi'},
                     {data: 'ditelindje', name: 'ditelindje'},
                     {data: 'data_regjistrim', name: 'data_regjistrim'},
+                    {data: 'actions', name: 'actions'},
                     {data: 'created_at', name: 'created_at'}
                 ]
             });

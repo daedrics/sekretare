@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sekretare;
 
 use App\Http\Requests\UserFormRequest;
+use App\Models\Student;
 use App\Repositories\GrupMesimorRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\UserRepository;
@@ -34,7 +35,7 @@ class StudentController extends Controller
     public function index()
     {
         return view('sekretare.student.index')
-            ->with('grupe',$this->grupMesimorRepository->toArray());
+            ->with('grupe', $this->grupMesimorRepository->toArray());
     }
 
     /**
@@ -53,12 +54,15 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param Student $student
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(Student $student)
     {
-        //
+        return view('sekretare.student.edit')
+            ->with('student', $student)
+            ->with('grupe', $this->grupMesimorRepository->toArray());
     }
 
     /**
@@ -70,18 +74,27 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->studentRepository->update($request, $id);
+        Toastr::success('Studenti u perditesua me sukses');
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param Student $student
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        $student->user()->delete();
+        return response()
+            ->json([
+                'message' => "Studenti u fshi me sukses!",
+                'status' => 200
+            ], 200);
+
     }
 
     public function dataTable()
