@@ -20,9 +20,9 @@ class CreateStudentsTable extends Migration
             $table->date('ditelindje');
             $table->date('data_regjistrim');
             $table->unsignedInteger('ID_Grup_Mesimor');
-            $table->foreign('ID_Grup_Mesimor')->references('id')->on('grup_mesimors');
+            $table->foreign('ID_Grup_Mesimor')->references('id')->on('grup_mesimors')->onDelete('cascade');;
             $table->unsignedInteger('ID_User');
-            $table->foreign('ID_User')->references('id')->on('users');
+            $table->foreign('ID_User')->references('id')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
     }

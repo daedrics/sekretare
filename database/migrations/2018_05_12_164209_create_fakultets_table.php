@@ -16,7 +16,7 @@ class CreateFakultetsTable extends Migration
         Schema::create('fakultets', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('ID_Universitet');
-            $table->foreign('ID_Universitet')->references('id')->on('universitets');
+            $table->foreign('ID_Universitet')->references('id')->on('universitets')->onDelete('cascade');;
             $table->string('emer_FAKUL');
             $table->timestamps();
         });

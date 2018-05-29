@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Viti_Akademik extends Model
 {
 
+    protected $table = 'viti_akademiks';
+
     public function grup_mesimor()
     {
         return $this->hasMany(Grup_Mesimor::class, 'ID_Viti_Akademik');

@@ -27,6 +27,10 @@
                 </li>
 
                 <li>
+                    <a href="{{route('sekretare.grupMesimor.index')}}"> <i class="menu-icon fa fa-address-book-o"></i>Grup Mesimor</a>
+                </li>
+
+                <li>
                     <a href="{{route('sekretare.student.index')}}"> <i class="menu-icon fa fa-users"></i>Student</a>
                 </li>
 

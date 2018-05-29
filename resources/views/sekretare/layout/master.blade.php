@@ -25,8 +25,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/cs-skin-elastic.css')}}">
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
     <link rel="stylesheet" href="{{asset('assets/scss/style.css')}}">
-    <link href="{{asset('assets/css/lib/vector-map/jqvmap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/lib/datatable/dataTables.bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/bootstrap-sweetalert/dist/sweetalert.css') }}">
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
@@ -78,6 +78,8 @@
 <script src="{{asset('assets/js/lib/data-table/buttons.print.min.js')}}"></script>
 <script src="{{asset('assets/js/lib/data-table/buttons.colVis.min.js')}}"></script>
 <script src="{{asset('assets/js/lib/data-table/datatables-init.js')}}"></script>
+<script src="{{ asset('assets/js/moment/min/moment.min.js') }}"></script>
+<script src="{{ asset('assets/js/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap-sweetalert/dist/sweetalert.min.js') }}"></script>
 <script src="{{asset('js/toastr.min.js')}}"></script>
 <script src="{{asset('js/myScripts.js')}}"></script>

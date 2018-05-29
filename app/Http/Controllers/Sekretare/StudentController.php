@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Sekretare;
 
 use App\Http\Requests\UserFormRequest;
+use App\Repositories\GrupMesimorRepository;
+use App\Repositories\StudentRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,11 +13,17 @@ use Kamaln7\Toastr\Facades\Toastr;
 class StudentController extends Controller
 {
     protected $studentRepository;
+    protected $userRepository;
+    protected $grupMesimorRepository;
 
 
-    public function __construct(UserRepository $studentRepository)
+    public function __construct(StudentRepository $studentRepository,
+                                UserRepository $userRepository,
+                                GrupMesimorRepository $grupMesimorRepository)
     {
         $this->studentRepository = $studentRepository;
+        $this->userRepository = $userRepository;
+        $this->grupMesimorRepository = $grupMesimorRepository;
     }
 
     /**
@@ -25,7 +33,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('sekretare.student.index');
+        return view('sekretare.student.index')
+            ->with('grupe',$this->grupMesimorRepository->toArray());
     }
 
     /**
@@ -36,15 +45,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-
-        Toastr::success('User-i u krijua me sukses');
+        $this->userRepository->createStudent($request);
+        Toastr::success('Studenti u krijua me sukses');
         return redirect()->back();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -55,8 +64,8 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -67,7 +76,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -77,6 +86,6 @@ class StudentController extends Controller
 
     public function dataTable()
     {
-
+        return $this->studentRepository->dataTable();
     }
 }

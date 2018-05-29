@@ -23,11 +23,14 @@ class UserRepository
         return call_user_func_array(array($this->user, $method), $args);
     }
 
-    public function create($request)
+    public function createStudent($request)
     {
-        $data = $request->all();
-        $data['password'] = bcrypt($request->password);
-        $this->user->create($data);
+        $user_data = $request->only(['email', 'password']);
+        $user_data['password'] = bcrypt($user_data['password']);
+        $user_data['role'] = 'student';
+        $student_data = $request->only(['emer', 'mbiemer', 'ditelindje', 'data_regjistrim', 'ID_Grup_Mesimor']);
+        $user = $this->user->create($user_data);
+        $user->student()->create($student_data);
     }
 
     public function dataTable()

@@ -23,6 +23,13 @@ class DepartamentRepository
         return call_user_func_array(array($this->departament, $method), $args);
     }
 
+    public function toArray()
+    {
+        return $this->departament->all()
+            ->pluck('emer_DEP', 'id')
+            ->toArray();
+    }
+
     public function dataTable()
     {
         $departamente = $this->departament->all();

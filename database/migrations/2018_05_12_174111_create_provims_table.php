@@ -18,13 +18,13 @@ class CreateProvimsTable extends Migration
             $table->string('sezoni');
             $table->date('data_provim');
             $table->unsignedInteger('ID_Lenda');
-            $table->foreign('ID_Lenda')->references('id')->on('lendas');
+            $table->foreign('ID_Lenda')->references('id')->on('lendas')->onDelete('cascade');;
             $table->unsignedInteger('ID_Kryetar');
-            $table->foreign('ID_Kryetar')->references('id')->on('pedagogs');
+            $table->foreign('ID_Kryetar')->references('id')->on('pedagogs')->onDelete('cascade');;
             $table->unsignedInteger('ID_Andetar_I');
-            $table->foreign('ID_Andetar_I')->references('id')->on('pedagogs');
+            $table->foreign('ID_Andetar_I')->references('id')->on('pedagogs')->onDelete('cascade');;
             $table->unsignedInteger('ID_Andetar_II');
-            $table->foreign('ID_Andetar_II')->references('id')->on('pedagogs');
+            $table->foreign('ID_Andetar_II')->references('id')->on('pedagogs')->onDelete('cascade');;
             $table->timestamps();
         });
     }

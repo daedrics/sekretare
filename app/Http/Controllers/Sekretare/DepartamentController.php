@@ -65,8 +65,9 @@ class DepartamentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param Departament $departament
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function update(Request $request, Departament $departament)
     {
