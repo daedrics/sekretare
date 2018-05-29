@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 use App\Models\Fakultet;
 use App\Models\Pedagog;
+use Illuminate\Support\Collection;
 use Yajra\DataTables\Facades\DataTables;
 
 class PedagogRepository
@@ -26,7 +27,12 @@ class PedagogRepository
 
     public function toArray()
     {
-
+        $array = Collection::make();
+        $pedagoge = $this->all();
+        foreach ($pedagoge as $pedagog) {
+            $array->put($pedagog->id, $pedagog->emer . ' ' . $pedagog->mbiemer);
+        }
+        return $array->toArray();
     }
 
 

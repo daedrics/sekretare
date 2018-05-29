@@ -40,7 +40,7 @@ class PedagogController extends Controller
      * @param UserFormRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
         $this->userRepository->createPedagog($request);
         Toastr::success('Pedagogu u krijua me sukses');
@@ -68,9 +68,9 @@ class PedagogController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserFormRequest $request, $pedagog)
     {
-        $this->pedagogRepository->update($request, $id);
+        $this->pedagogRepository->update($request, $pedagog);
         Toastr::success('Pedagogu u perditesua me sukses');
         return redirect()->back();
     }

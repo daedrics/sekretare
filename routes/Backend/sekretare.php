@@ -15,7 +15,7 @@ Route::group([
     Route::post('student', 'StudentController@store')->name('student.store');
     Route::get('student/{student}/edit', 'StudentController@edit')->name('student.edit');
     Route::get('student/delete/{student}', 'StudentController@destroy')->name('student.destroy');
-    Route::put('student/update/{student}', 'StudentController@update')->name('student.update');
+    Route::put('student/update/{student}/{id}', 'StudentController@update')->name('student.update');
 
     /* pedagog routes */
     Route::get('pedagog/list', 'PedagogController@dataTable');
@@ -23,7 +23,7 @@ Route::group([
     Route::post('pedagog', 'PedagogController@store')->name('pedagog.store');
     Route::get('pedagog/{pedagog}/edit', 'PedagogController@edit')->name('pedagog.edit');
     Route::get('pedagog/delete/{pedagog}', 'PedagogController@destroy')->name('pedagog.destroy');
-    Route::put('pedagog/update/{pedagog}', 'PedagogController@update')->name('pedagog.update');
+    Route::put('pedagog/update/{pedagog}/{id}', 'PedagogController@update')->name('pedagog.update');
 
     /* fakultet routes */
     Route::get('fakultet/list', 'FakultetController@dataTable');
@@ -61,4 +61,12 @@ Route::group([
     Route::get('lenda/{lenda}/edit', 'LendaController@edit')->name('lenda.edit');
     Route::get('lenda/delete/{lenda}', 'LendaController@destroy')->name('lenda.destroy');
     Route::put('lenda/update/{lenda}', 'LendaController@update')->name('lenda.update');
+
+    /* provim routes */
+    Route::get('provim/list', 'ProvimController@dataTable');
+    Route::get('provim', 'ProvimController@index')->name('provim.index');
+    Route::post('provim', 'ProvimController@store')->name('provim.store');
+    Route::get('provim/{provim}/edit', 'ProvimController@edit')->name('provim.edit');
+    Route::get('provim/delete/{provim}', 'ProvimController@destroy')->name('provim.destroy');
+    Route::put('provim/update/{provim}', 'ProvimController@update')->name('provim.update');
 });

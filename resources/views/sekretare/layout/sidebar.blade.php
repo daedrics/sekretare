@@ -42,6 +42,10 @@
                     <a href="{{route('sekretare.lenda.index')}}"> <i class="menu-icon fa fa-book"></i>Lenda</a>
                 </li>
 
+                <li>
+                    <a href="{{route('sekretare.provim.index')}}"> <i class="menu-icon fa fa-question"></i>Provim</a>
+                </li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

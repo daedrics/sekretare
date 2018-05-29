@@ -33,7 +33,7 @@
                 <div class="card-header">
                     <strong>Edito Student</strong>
                 </div>
-                {{ Form::model($student, ['route' => ['sekretare.student.update', $student->id], 'method'=>'put', 'class'=>'margin-top-20']) }}
+                {{ Form::model($student, ['route' => ['sekretare.student.update', $student->id, $student->user->id], 'method'=>'put', 'class'=>'margin-top-20']) }}
                 <div class="card-body card-block">
                     <div class="row form-group">
 

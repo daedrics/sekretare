@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\ModelTrait;
+use App\Traits\ProvimTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Provim extends Model
 {
+    use ModelTrait;
+    use ProvimTrait;
+
+    protected $fillable = ['sezoni', 'data_provim', 'ID_Lenda', 'ID_Kryetar', 'ID_Anetar_I', 'ID_Anetar_II'];
 
     public function flete_provim()
     {

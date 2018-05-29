@@ -44,7 +44,7 @@ class StudentController extends Controller
      * @param UserFormRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
         $this->userRepository->createStudent($request);
         Toastr::success('Studenti u krijua me sukses');
@@ -68,13 +68,14 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param UserFormRequest|Request $request
+     * @param $student
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(UserFormRequest $request, $student)
     {
-        $this->studentRepository->update($request, $id);
+        $this->studentRepository->update($request, $student);
         Toastr::success('Studenti u perditesua me sukses');
         return redirect()->back();
     }

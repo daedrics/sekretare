@@ -23,6 +23,14 @@ class LendaRepository
         return call_user_func_array(array($this->lenda, $method), $args);
     }
 
+    public function toArray()
+    {
+        $lende = $this->lenda->all()
+            ->pluck('emer', 'id')
+            ->toArray();
+        return $lende;
+    }
+
     public function dataTable()
     {
         $lende = $this->lenda->all();
