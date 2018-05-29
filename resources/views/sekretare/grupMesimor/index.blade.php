@@ -1,7 +1,13 @@
 @extends('sekretare.layout.master')
 
 @section('styles')
+    <style>
 
+        .modal-sm {
+            max-width: 500px !important;
+        }
+
+    </style>
 @endsection
 
 @section('breadcrumb')
