@@ -38,6 +38,10 @@
                     <a href="{{route('sekretare.pedagog.index')}}"> <i class="menu-icon fa fa-user-circle"></i>Pedagog</a>
                 </li>
 
+                <li>
+                    <a href="{{route('sekretare.lenda.index')}}"> <i class="menu-icon fa fa-book"></i>Lenda</a>
+                </li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

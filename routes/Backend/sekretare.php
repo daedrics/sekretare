@@ -53,4 +53,12 @@ Route::group([
 
     /* vit akademik routes */
     Route::post('vitAkademik', 'VitAkademikController@store')->name('vitAkademik.store');
+
+    /* lenda routes */
+    Route::get('lenda/list', 'LendaController@dataTable');
+    Route::get('lenda', 'LendaController@index')->name('lenda.index');
+    Route::post('lenda', 'LendaController@store')->name('lenda.store');
+    Route::get('lenda/{lenda}/edit', 'LendaController@edit')->name('lenda.edit');
+    Route::get('lenda/delete/{lenda}', 'LendaController@destroy')->name('lenda.destroy');
+    Route::put('lenda/update/{lenda}', 'LendaController@update')->name('lenda.update');
 });
