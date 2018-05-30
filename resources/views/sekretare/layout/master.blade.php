@@ -60,7 +60,7 @@
 
     @yield('breadcrumb')
 
-    <div class="animated {{Request::is('sekretare/grupMesimor') ? '' : 'fadeInRight'}}">
+    <div class="animated {{Request::is('sekretare/grupMesimor') || Request::is('sekretare/provim') ? '' : 'fadeInRight'}}">
         <div class="content  mt-3">
             @yield('content')
         </div>

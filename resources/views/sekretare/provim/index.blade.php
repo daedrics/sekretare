@@ -139,7 +139,40 @@
         </div>
     </div>
 
+    {{--<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog"--}}
+    {{--aria-hidden="true" style="display: none;">--}}
+    {{--<div class="modal-dialog modal-lg" role="document">--}}
+    {{--<div class="modal-content">--}}
+    {{--<div class="modal-header">--}}
+    {{--<h5 class="modal-title" id="mediumModalLabel">Provimi</h5>--}}
+    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+    {{--<span aria-hidden="true">×</span>--}}
+    {{--</button>--}}
+    {{--</div>--}}
+    {{--<div class="modal-body">--}}
+    {{--<div id="notebook-paper">--}}
+    {{--<header>--}}
+    {{--<h1><img class="logo" src="{{asset('images/upt.png')}}"></h1>--}}
+    {{--</header>--}}
+    {{--<div id="content">--}}
+    {{--<div class="hipsum">--}}
+    {{--<p style="float: right"><strong>Kryetar:</strong> Pedagog Pedagog</p>--}}
+    {{--<p><strong>Sezoni:</strong> Vjeshte</p>--}}
+    {{--<p style="float: right"><strong>Anetar I:</strong> Pedagog Pedagog</p>--}}
+    {{--<p><strong>Data:</strong> 25/02/2018</p>--}}
+    {{--<p style="float: right"><strong>Anetar II:</strong> Pedagog Pedagog</p>--}}
+    {{--<p><strong>Lenda:</strong> Database</p>--}}
 
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="modal-footer">--}}
+    {{--<button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
 
 @endsection
 
@@ -174,7 +207,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $('#provimTable').DataTable({
+            var table = $('#provimTable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: APP_URL + '/sekretare/provim/list',
@@ -190,6 +223,21 @@
                     {data: 'created_at', name: 'created_at'}
                 ]
             });
+
+//            $('#provimTable tbody').on('click', '.btnShow', function () {
+//                var data = table.row($(this).closest('tr').index()).data();
+//                console.log(data);
+//                $('#content').empty();
+//                var html = ' <p style="float: right"><strong>Kryetar:</strong> ' + data.kryetar + '</p>' +
+//                    '<p><strong>Sezoni:</strong> ' + data.sezoni + '</p> ' +
+//                    '<p style="float: right"><strong>Anetar I:</strong> ' + data.anetarI + '</p> ' +
+//                    '<p><strong>Data:</strong> ' + data.data_provim + '</p> ' +
+//                    '<p style="float: right"><strong>Anetar II:</strong> ' + data.anetarII + '</p> ' +
+//                    '<p><strong>Lenda:</strong> ' + data.lenda + '</p>';
+//                $('#content').append(html);
+//                $('#mediumModal').modal('show');
+//            });
+
         });
     </script>
 
