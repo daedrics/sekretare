@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f1f1f1;
+
+        }
+
+        #notebook-paper {
+            font-family: helvetica neue, helvetica, arial, sans-serif;
+            font-weight: 200;
+            width: 960px;
+            height: 1109px;
+            background: linear-gradient(to bottom, white 29px, #0000 1px);
+            margin: 50px auto;
+            background-size: 100% 30px;
+            position: relative;
+            padding-top: 150px;
+            padding-left: 100px;
+            padding-right: 20px;
+            overflow: hidden;
+            border-radius: 5px;
+            -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2), 0px 0px 6px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2), 0px 0px 6px rgba(0, 0, 0, 0.2);
+            -ms-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2), 0px 0px 6px rgba(0, 0, 0, 0.2);
+            -o-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2), 0px 0px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2), 0px 0px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #notebook-paper:before {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 140px;
+            height: 100%;
+            width: 1px;
+
+        }
+
+        #notebook-paper header {
+            height: 150px;
+            width: 100%;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #notebook-paper header h1 {
+            font-size: 60px;
+            line-height: 60px;
+            padding: 127px 20px 0 160px;
+            margin: 0;
+        }
+
+        #notebook-paper #content {
+            margin-top: 37px;
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        #notebook-paper #content p {
+            margin: 0 0 0 0;
+        }
+
+        .logo {
+            width: 128px;
+            height: 128px;
+            position: absolute;
+            top: 50px;
+            left: 400px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div id="notebook-paper">
+    <header>
+        <h1><img class="logo" src="upt.png"></h1>
+    </header>
+    <div id="content">
+        <div class="hipsum">
+            <p style="float: right"><strong>Kryetar:</strong> Pedagog Pedagog</p>
+            <p><strong>Sezoni:</strong> Vjeshte</p>
+            <p style="float: right"><strong>Anetar I:</strong> Pedagog Pedagog</p>
+            <p><strong>Data:</strong> 25/02/2018</p>
+            <p style="float: right"><strong>Anetar II:</strong> Pedagog Pedagog</p>
+            <p><strong>Lenda:</strong> Database</p>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -26,9 +26,9 @@ class ProvimRepository
 
     public function create($request)
     {
-        $kryetar = $request->kryetar;
-        $anetarI = $request->anetarI;
-        $anetarII = $request->anetarII;
+        $kryetar = $request->ID_Kryetar;
+        $anetarI = $request->ID_Anetar_I;
+        $anetarII = $request->ID_Anetar_II;
         if ($kryetar == $anetarI || $kryetar == $anetarII || $anetarI == $anetarII) {
             return false;
         }

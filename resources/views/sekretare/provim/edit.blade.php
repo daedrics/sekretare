@@ -17,7 +17,7 @@
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
-                        <li class="active">Provim</li>
+                        <li class="active">Provim/Edito</li>
                     </ol>
                 </div>
             </div>
@@ -28,12 +28,12 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <strong>Regjistro Provim</strong>
+                    <strong>Edito Provim</strong>
                 </div>
-                {{ Form::open(['route'=>'sekretare.provim.store', 'method'=>'post','id'=>'provimStore']) }}
+                {{ Form::model($provim, ['route' => ['sekretare.provim.update', $provim->id], 'method'=>'put', 'id' => 'provimUpdate', 'class'=>'margin-top-20']) }}
                 <div class="card-body card-block">
 
                     <div class="row form-group">
@@ -51,7 +51,8 @@
                             <div class="form-group">
                                 {{ Form::label('data_provim', 'Data Provim')}}
                                 <div class='input-group date' id='data_provim'>
-                                    <input type='text' placeholder="Data Provim" name="data_provim"
+                                    <input type='text' placeholder="Data Provim" value="{{$provim->data_provim}}"
+                                           name="data_provim"
                                            class="form-control"/>
                                     <span class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
@@ -97,49 +98,19 @@
 
                     </div>
 
-
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="fa fa-save"></i> Regjistro
+                        <i class="fa fa-save"></i> Update
                     </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Reset
-                    </button>
+                    <a href="{{route('sekretare.provim.index')}}" class="btn btn-default btn-sm">
+                        <i class="fa fa-arrow-circle-left"></i> Back
+                    </a>
                 </div>
                 {{Form::close()}}
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-striped" id="provimTable">
-                        <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Sezoni</th>
-                            <th scope="col">Data Provim</th>
-                            <th scope="col">Lenda</th>
-                            <th scope="col">Kryetari</th>
-                            <th scope="col">Anetari I</th>
-                            <th scope="col">Anetari II</th>
-                            <th scope="col">Veprime</th>
-                            <th scope="col">Krijuar me</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 
 @endsection
 
@@ -155,7 +126,7 @@
                 placeholder: 'Zgjidh...'
             });
 
-            $('#provimStore').on('submit', function (event) {
+            $('#provimUpdate').on('submit', function (event) {
                 var kryetar = $('#kryetar').val();
                 var anetar1 = $('#anetar1').val();
                 var anetar2 = $('#anetar2').val();
@@ -170,27 +141,4 @@
 
         });
     </script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('#provimTable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: APP_URL + '/sekretare/provim/list',
-                columns: [
-                    {data: 'id', name: 'id'},
-                    {data: 'sezoni', name: 'sezoni'},
-                    {data: 'data_provim', name: 'data_provim'},
-                    {data: 'lenda', name: 'lenda'},
-                    {data: 'kryetar', name: 'kryetar'},
-                    {data: 'anetarI', name: 'anetarI'},
-                    {data: 'anetarII', name: 'anetarII'},
-                    {data: 'actions', name: 'actions'},
-                    {data: 'created_at', name: 'created_at'}
-                ]
-            });
-        });
-    </script>
-
 @endsection

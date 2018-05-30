@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/bootstrap-sweetalert/dist/sweetalert.css') }}">
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/myStyles.css')}}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <script>
@@ -58,8 +59,11 @@
 <!-- Header-->
 
     @yield('breadcrumb')
-    <div class="content mt-3">
-        @yield('content')
+
+    <div class="animated {{Request::is('sekretare/grupMesimor') ? '' : 'fadeInRight'}}">
+        <div class="content  mt-3">
+            @yield('content')
+        </div>
     </div>
 </div><!-- /#right-panel -->
 
