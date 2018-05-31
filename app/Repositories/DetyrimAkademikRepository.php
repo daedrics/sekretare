@@ -35,7 +35,7 @@ class DetyrimAkademikRepository
             ->groupBy('students.ID_Grup_Mesimor')
             ->groupBy('lendas.id')
             ->groupBy('pedagogs.id')
-            ->select(['detyrim_akademiks.created_at', 'grup_mesimors.emer_G_M', 'departaments.emer_DEP', 'viti_akademiks.emer_V_A', 'lendas.emer AS emer_lende', 'pedagogs.emer', 'pedagogs.mbiemer'])
+            ->select(['detyrim_akademiks.id','detyrim_akademiks.created_at', 'grup_mesimors.emer_G_M', 'departaments.emer_DEP', 'viti_akademiks.emer_V_A', 'lendas.emer AS emer_lende', 'pedagogs.emer', 'pedagogs.mbiemer'])
             ->get();
 
 
@@ -60,6 +60,5 @@ class DetyrimAkademikRepository
         // return $detyrime;
 
     }
-
 
 }

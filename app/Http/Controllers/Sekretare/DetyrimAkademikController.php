@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sekretare;
 
 use App\Http\Requests\UserFormRequest;
+use App\Models\Detyrim_Akademik;
 use App\Repositories\DetyrimAkademikRepository;
 use App\Repositories\GrupMesimorRepository;
 use App\Repositories\LendaRepository;
@@ -74,9 +75,20 @@ class DetyrimAkademikController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Detyrim_Akademik $detyrimAkademik)
     {
-        //
+        $grupMesimor = $detyrimAkademik->student->grup_mesimor->emer_G_M . ' '
+            . $detyrimAkademik->student->grup_mesimor->departament->emer_DEP . ' '
+            . $detyrimAkademik->student->grup_mesimor->vit_akademik->emer_V_A;
+
+        $grupMesimorId = $detyrimAkademik->student->ID_Grup_Mesimor;
+
+        return view('sekretare.detyrimAkademik.edit')
+            ->with('detyrimAkademik', $detyrimAkademik)
+            ->with('grupMesimor', $grupMesimor)
+            ->with('lende', $this->lendaRepository->toArray())
+            ->with('grupMesimorId', $grupMesimorId)
+            ->with('pedagog', $this->pedagogRepository->toArray());
     }
 
     /**
@@ -88,7 +100,7 @@ class DetyrimAkademikController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

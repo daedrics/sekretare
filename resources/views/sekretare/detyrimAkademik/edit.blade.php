@@ -17,7 +17,7 @@
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
-                        <li class="active">Detyrim Akademik</li>
+                        <li class="active">Detyrim Akademik/Edito</li>
                     </ol>
                 </div>
             </div>
@@ -28,12 +28,12 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <strong>Regjistro Detyrim Akademik</strong>
+                    <strong>Edito Detyrim Akademik</strong>
                 </div>
-                {{ Form::open(['route'=>'sekretare.detyrimAkademik.store', 'method'=>'post']) }}
+                {{ Form::model($detyrimAkademik, ['route' => ['sekretare.detyrimAkademik.update', $detyrimAkademik->id], 'method'=>'put', 'id' => 'provimUpdate', 'class'=>'margin-top-20']) }}
                 <div class="card-body card-block">
 
                     <div class="row form-group">
@@ -54,49 +54,25 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="form-group">
-                                {!! Form::label('grup_mesimor', 'Grupi Mesimor') !!}
-                                {!! Form::select('grup_mesimor', ['' => 'Zgjidh...'] + $grup_mesimor,null, ['id'=>'grup_mesimor','class' => 'select2 form-control','required']) !!}
-                                <span class="text text-danger" id="userDetailIdRequired"></span>
+                                {!! Form::label('grup_mesimor', 'Grup Mesimor', ['class' => 'form-control-label']) !!}
+                                {!! Form::text('grup_mesimor', $grupMesimor, ['class' => 'form-control','id'=>'grup_mesimor','placeholder' =>'Grup Mesimor', 'disabled']) !!}
                             </div>
                         </div>
-
+                        <input type="hidden" name="grupMesimorId" value="{{$grupMesimorId}}">
                     </div>
 
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="fa fa-save"></i> Regjistro
+                        <i class="fa fa-save"></i> Update
                     </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Reset
-                    </button>
+                    <a href="{{route('sekretare.detyrimAkademik.index')}}" class="btn btn-default btn-sm">
+                        <i class="fa fa-arrow-circle-left"></i> Back
+                    </a>
                 </div>
                 {{Form::close()}}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-striped" id="detyrimAkademikTable">
-                        <thead>
-                        <tr>
-                            <th scope="col">Lenda</th>
-                            <th scope="col">Pedagogu</th>
-                            <th scope="col">Grupi Mesimor</th>
-                            <th scope="col">Veprime</th>
-                            <th scope="col">Krijuar me</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
@@ -112,24 +88,4 @@
             });
         });
     </script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            var table = $('#detyrimAkademikTable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: APP_URL + '/sekretare/detyrimAkademik/list',
-                columns: [
-                    {data: 'lenda', name: 'lenda'},
-                    {data: 'pedagogu', name: 'pedagogu'},
-                    {data: 'grupi_mesimor', name: 'grupi_mesimor'},
-                    {data: 'actions', name: 'actions'},
-                    {data: 'created_at', name: 'created_at'}
-                ]
-            });
-
-        });
-    </script>
-
 @endsection

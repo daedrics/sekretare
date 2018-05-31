@@ -74,10 +74,10 @@ class GrupMesimorRepository
     {
         $grupe = $this->grup_mesimor
             ->join('students', 'students.ID_Grup_Mesimor', '=', 'grup_mesimors.id')
-            ->join('detyrim__akademiks', 'detyrim__akademiks.ID_Student', '=', 'students.id')
+            ->join('detyrim_akademiks', 'detyrim_akademiks.ID_Student', '=', 'students.id')
             ->where('grup_mesimors.id', $request->grup_mesimor)
-            ->where('detyrim__akademiks.ID_Lenda', $request->ID_Lenda)
-            ->where('detyrim__akademiks.ID_Pedagog', $request->ID_Pedagog)->get();
+            ->where('detyrim_akademiks.ID_Lenda', $request->ID_Lenda);
+            //->where('detyrim_akademiks.ID_Pedagog', $request->ID_Pedagog)->get();
 
         return $grupe->count() == 0;
     }

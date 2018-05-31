@@ -13,7 +13,7 @@ class CreateDetyrimAkademiksTable extends Migration
      */
     public function up()
     {
-        Schema::create('detyrim__akademiks', function (Blueprint $table) {
+        Schema::create('detyrim_akademiks', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('ID_Pedagog');
             $table->foreign('ID_Pedagog')->references('id')->on('pedagogs')->onDelete('cascade');;
@@ -33,6 +33,6 @@ class CreateDetyrimAkademiksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detyrim__akademiks');
+        Schema::dropIfExists('detyrim_akademiks');
     }
 }

@@ -78,43 +78,6 @@
                             </div>
                         </div>
 
-                        <div class="modal fade" id="staticModal" tabindex="-1" role="dialog"
-                             aria-labelledby="staticModalLabel"
-                             style="display: none;" aria-hidden="true">
-                            <div class="modal-dialog modal-sm" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="staticModalLabel">Krijo Vit Akademik</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    {{ Form::open(['route'=>'sekretare.vitAkademik.store', 'method'=>'post']) }}
-                                    <div class="modal-body">
-                                        <div class="row form-group">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    {!! Form::label('emer_V_A', 'Emer Viti Akademik', ['class' => 'form-control-label']) !!}
-                                                    {!! Form::text('emer_V_A', null, ['class' => 'form-control','id'=>'email','placeholder' =>'Emer Viti Akademik', 'required']) !!}
-                                                    @if($errors->first('emer_V_A')) <span
-                                                            class="text text-danger">{{ $errors->first('emer_V_A') }}</span> @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                                                    class="fa fa-ban"></i>
-                                            Anullo
-                                        </button>
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>
-                                            Regjistro
-                                        </button>
-                                    </div>
-                                    {{Form::close()}}
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -155,6 +118,43 @@
         </div>
     </div>
 
+    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog"
+         aria-labelledby="staticModalLabel"
+         style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticModalLabel">Krijo Vit Akademik</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                {{ Form::open(['route'=>'sekretare.vitAkademik.store', 'method'=>'post']) }}
+                <div class="modal-body">
+                    <div class="row form-group">
+                        <div class="col-12">
+                            <div class="form-group">
+                                {!! Form::label('emer_V_A', 'Emer Viti Akademik', ['class' => 'form-control-label']) !!}
+                                {!! Form::text('emer_V_A', null, ['class' => 'form-control','id'=>'email','placeholder' =>'Emer Viti Akademik', 'required']) !!}
+                                @if($errors->first('emer_V_A')) <span
+                                        class="text text-danger">{{ $errors->first('emer_V_A') }}</span> @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                                class="fa fa-ban"></i>
+                        Anullo
+                    </button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>
+                        Regjistro
+                    </button>
+                </div>
+                {{Form::close()}}
+            </div>
+        </div>
+    </div>
 
 
 @endsection
