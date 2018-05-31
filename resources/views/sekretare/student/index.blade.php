@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 {{ Form::label('ditelindje', 'Ditelindje')}}
                                 <div class='input-group date' id='ditelindje'>
-                                    <input type='text' placeholder="Ditelindje" name="ditelindje" class="form-control"/>
+                                    <input type='text' placeholder="Ditelindje" value="{{ old('ditelindje') }}" name="ditelindje" class="form-control"/>
                                     <span class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
                                     </span>
@@ -102,7 +102,7 @@
                             <div class="form-group">
                                 {{ Form::label('data_regjistrim', 'Date Regjistrim')}}
                                 <div class='input-group date' id='date_regjistrim'>
-                                    <input type='text' placeholder="Date Regjistrim" name="data_regjistrim"
+                                    <input type='text' placeholder="Date Regjistrim" value="{{ old('data_regjistrim') }}" name="data_regjistrim"
                                            class="form-control"/>
                                     <span class="input-group-addon">
                                         <span class="fa fa-calendar"></span>

@@ -35,7 +35,7 @@ class StudentRepository
 
     public function dataTable()
     {
-        $students = $this->student->all();
+        $students = $this->student->with(['grup_mesimor', 'grup_mesimor.departament','grup_mesimor.vit_akademik'])->get();
 
         return DataTables::of($students)
             ->addColumn('actions', function ($students) {

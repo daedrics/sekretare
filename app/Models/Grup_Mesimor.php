@@ -29,4 +29,14 @@ class Grup_Mesimor extends Model
     {
         return $this->hasMany(Student::class, 'ID_Grup_Mesimor');
     }
+
+
+//    public function detyrim_akademik()
+//    {
+//        return $this->hasManyThrough(Detyrim_Akademik::class, Student::class,
+//            'ID_Grup_Mesimor',
+//            'ID_Student',
+//            'id',
+//            'id');
+//    }
 }

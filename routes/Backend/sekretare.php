@@ -69,4 +69,13 @@ Route::group([
     Route::get('provim/{provim}/edit', 'ProvimController@edit')->name('provim.edit');
     Route::get('provim/delete/{provim}', 'ProvimController@destroy')->name('provim.destroy');
     Route::put('provim/update/{provim}', 'ProvimController@update')->name('provim.update');
+
+
+    /* detyrim akademik routes */
+    Route::get('detyrimAkademik/list', 'DetyrimAkademikController@dataTable');
+    Route::get('detyrimAkademik', 'DetyrimAkademikController@index')->name('detyrimAkademik.index');
+    Route::post('detyrimAkademik', 'DetyrimAkademikController@store')->name('detyrimAkademik.store');
+    Route::get('detyrimAkademik/{detyrimAkademik}/edit', 'DetyrimAkademikController@edit')->name('detyrimAkademik.edit');
+    Route::get('detyrimAkademik/delete/{detyrimAkademik}', 'DetyrimAkademikController@destroy')->name('detyrimAkademik.destroy');
+    Route::put('detyrimAkademik/update/{detyrimAkademik}', 'DetyrimAkademikController@update')->name('detyrimAkademik.update');
 });

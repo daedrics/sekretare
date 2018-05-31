@@ -10,12 +10,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <title>Sekretari</title>
+    <meta name="description" content="Sekretari">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="shortcut icon" href="{{asset('images/education.png')}}">
 
     <link rel="stylesheet" href="{{asset('assets/css/normalize.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -39,7 +39,7 @@
         <div class="login-content">
             <div class="login-logo">
                 <a href="index.html">
-                    <img class="align-content" src="images/logo.png" alt="">
+                    <img class="align-content" src="{{asset('images/logosek2.png')}}" alt="">
                 </a>
             </div>
             <div class="login-form">

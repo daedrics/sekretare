@@ -50,6 +50,11 @@
                     <a href="{{route('sekretare.provim.index')}}"> <i class="menu-icon fa fa-question"></i>Provim</a>
                 </li>
 
+                <li class="{{Request::is('sekretare/detyrimAkademik') || Request::is('sekretare/detyrimAkademik/*') ? 'active' : ''}}">
+                    <a href="{{route('sekretare.detyrimAkademik.index')}}"> <i class="menu-icon fa fa-sticky-note-o"></i>Detyrim
+                        Akademik</a>
+                </li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

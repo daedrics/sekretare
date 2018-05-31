@@ -38,7 +38,8 @@ class ProvimRepository
 
     public function dataTable()
     {
-        $provime = $this->provim->all();
+        $provime = $this->provim->with(['lenda','kryetar', 'anetar1', 'anetar2'])->get();
+
         return DataTables::of($provime)
             ->addColumn('actions', function ($provime) {
                 return $provime->action_buttons;
