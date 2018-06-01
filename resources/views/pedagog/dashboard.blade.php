@@ -4,7 +4,11 @@
 
 @endsection
 
+
+
 @section('content')
+
+
 
 @endsection
 

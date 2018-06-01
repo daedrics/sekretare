@@ -57,7 +57,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 {!! Form::label('grup_mesimor', 'Grupi Mesimor') !!}
-                                {!! Form::select('grup_mesimor', ['' => 'Zgjidh...'] + $grup_mesimor,null, ['id'=>'grup_mesimor','class' => 'select2 form-control','required']) !!}
+                                {!! Form::select('grupMesimorId', ['' => 'Zgjidh...'] + $grup_mesimor,null, ['id'=>'grup_mesimor','class' => 'select2 form-control','required']) !!}
                                 <span class="text text-danger" id="userDetailIdRequired"></span>
                             </div>
                         </div>

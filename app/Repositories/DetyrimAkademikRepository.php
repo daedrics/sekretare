@@ -61,4 +61,10 @@ class DetyrimAkademikRepository
 
     }
 
+
+    public function detyrimeStudent($students)
+    {
+        $detyrime = $this->detyrim_Akademik->with('student')->whereIn('id',$students)->get();
+        return $detyrime;
+    }
 }

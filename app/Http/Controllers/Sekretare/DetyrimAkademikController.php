@@ -98,9 +98,18 @@ class DetyrimAkademikController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Detyrim_Akademik $detyrimAkademik)
     {
 
+        if ($detyrimAkademik->ID_Lenda != $request->ID_Lenda)
+            if (!$this->grupMesimorRepository->validateDetyrim($request)) {
+                Toastr::error('Ky detyrim akademik per kete lende ekziston!');
+                return redirect()->back();
+            }
+
+        $this->grupMesimorRepository->updateDetyrim($request, $detyrimAkademik);
+        Toastr::success('Detyrimi akademik u perditesua me sukses!');
+        return redirect()->back();
     }
 
     /**
@@ -109,9 +118,14 @@ class DetyrimAkademikController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Detyrim_Akademik $detyrimAkademik)
     {
-        //
+        $this->grupMesimorRepository->deleteDetyrim($detyrimAkademik);
+        return response()
+            ->json([
+                'message' => "Detyrimi akademik u fshi me sukses!",
+                'status' => 200
+            ], 200);
     }
 
     public function dataTable()

@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Detyrim_Akademik;
 use App\Models\Grup_Mesimor;
 use Illuminate\Support\Collection;
 use Yajra\DataTables\Facades\DataTables;
@@ -51,10 +52,9 @@ class GrupMesimorRepository
             ->make(true);
     }
 
-
     public function storeDetyrim($request)
     {
-        $students = $this->grup_mesimor->find($request->grup_mesimor)->student;
+        $students = $this->grup_mesimor->find($request->grupMesimorId)->student;
 
         if ($students->count() == 0) {
             return false;
@@ -75,12 +75,64 @@ class GrupMesimorRepository
         $grupe = $this->grup_mesimor
             ->join('students', 'students.ID_Grup_Mesimor', '=', 'grup_mesimors.id')
             ->join('detyrim_akademiks', 'detyrim_akademiks.ID_Student', '=', 'students.id')
-            ->where('grup_mesimors.id', $request->grup_mesimor)
+            ->where('grup_mesimors.id', $request->grupMesimorId)
             ->where('detyrim_akademiks.ID_Lenda', $request->ID_Lenda);
-            //->where('detyrim_akademiks.ID_Pedagog', $request->ID_Pedagog)->get();
+        //->where('detyrim_akademiks.ID_Pedagog', $request->ID_Pedagog)->get();
 
         return $grupe->count() == 0;
     }
 
+    public function updateDetyrim($request, $detyrimAkademik)
+    {
+        $lenda = $detyrimAkademik->ID_Lenda;
+        $pedagog = $detyrimAkademik->ID_Pedagog;
+        $grupMesimor = $request->grupMesimorId;
+
+        $detyrime = $this->detyrime($lenda, $pedagog, $grupMesimor);
+
+        foreach ($detyrime as $detyrim) {
+            $d_a = Detyrim_Akademik::find($detyrim->id_detyrim);
+            $d_a->update(['ID_Lenda' => $request->ID_Lenda, 'ID_Pedagog' => $request->ID_Pedagog]);
+        }
+
+    }
+
+    public function deleteDetyrim($detyrimAkademik)
+    {
+        $lenda = $detyrimAkademik->ID_Lenda;
+        $pedagog = $detyrimAkademik->ID_Pedagog;
+        $grupMesimor = $detyrimAkademik->student->ID_Grup_Mesimor;
+        $detyrime = $this->detyrime($lenda, $pedagog, $grupMesimor);
+        foreach ($detyrime as $detyrim) {
+            $d_a = Detyrim_Akademik::find($detyrim->id_detyrim);
+            $d_a->delete();
+        }
+    }
+
+    public function detyrime($lenda, $pedagog, $grupMesimor)
+    {
+        $detyrime = $this->grup_mesimor
+            ->join('students', 'students.ID_Grup_Mesimor', '=', 'grup_mesimors.id')
+            ->join('detyrim_akademiks', 'detyrim_akademiks.ID_Student', '=', 'students.id')
+            ->where('grup_mesimors.id', $grupMesimor)
+            ->where('detyrim_akademiks.ID_Lenda', $lenda)
+            ->where('detyrim_akademiks.ID_Pedagog', $pedagog)
+            ->select(['detyrim_akademiks.id as id_detyrim', 'students.id as id_student'])
+            ->get();
+        return $detyrime;
+    }
+
+    public function detyrimePedagog($request)
+    {
+        $lenda = $request->ID_Lenda;
+        $pedagog = auth()->user()->pedagog->id;
+        $grupMesimor = $request->ID_Grup_Mesimor;
+        $detyrime_array = [];
+        $detyrime = $this->detyrime($lenda, $pedagog, $grupMesimor);
+        foreach ($detyrime as $detyrim) {
+            array_push($detyrime_array, $detyrim->id_detyrim);
+        }
+        return $detyrime_array;
+    }
 
 }
