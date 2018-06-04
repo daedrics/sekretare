@@ -60,7 +60,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm offset-2">
-                        <i class="fa fa-save"></i> Kerko
+                        <i class="fa fa-search"></i> Kerko
                     </button>
                     <button type="reset" class="btn btn-danger btn-sm">
                         <i class="fa fa-ban"></i> Reset
