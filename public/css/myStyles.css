@@ -102,3 +102,15 @@
     top: 50px;
     left: 300px;
 }
+
+.switch.switch-text .switch-label {
+    border: 1px solid #858586 !important;
+}
+
+.switch.switch-text .switch-label::before {
+    color: black !important;
+}
+
+.switch.switch-text .switch-handle {
+    background: #cec9c9 !important;
+}

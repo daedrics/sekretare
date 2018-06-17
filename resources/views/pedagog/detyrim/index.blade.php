@@ -152,7 +152,8 @@
                         toastr['success'](d.message);
                     },
                     error: function (d) {
-                        toastr['error']('Dicka shkoi gabim, provo perseri!');
+                        console.log(d.responseJSON);
+                        toastr['error'](d.responseJSON.message);
                     }
                 })
             })

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Pedagog;
 
-use App\Models\Detyrim_Akademik;
 use App\Models\Flete_Provim;
 use App\Repositories\DetyrimAkademikRepository;
 use App\Repositories\GrupMesimorRepository;
@@ -11,7 +10,7 @@ use App\Repositories\ProvimRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DetyrimeController extends Controller
+class ProvimController extends Controller
 {
 
     protected $lendaRepository;
@@ -32,7 +31,7 @@ class DetyrimeController extends Controller
 
     public function index()
     {
-        return view('pedagog.detyrim.index')
+        return view('pedagog.provim.index')
             ->with('lende', $this->lendaRepository->toArray())
             ->with('grupe', $this->grupMesimorRepository->toArray());
     }
@@ -50,33 +49,20 @@ class DetyrimeController extends Controller
             ->with('grupi', $grupi);
     }
 
-    public function ploteso(Detyrim_Akademik $detyrim)
+    public function nota(Request $request, $student)
     {
-        $provim = $this->provimRepository->where('ID_Lenda', $detyrim->ID_Lenda)->first();
-        if ($provim) {
-            $ploteson = $detyrim->ploteson ? 0 : 1;
-            $detyrim->update(['ploteson' => $ploteson]);
-            $provim_id = $provim->id;
-            if ($ploteson) {
-                Flete_Provim::create(['ID_Student' => $detyrim->ID_Student, 'ID_Provim' => $provim_id]);
-            } else {
-                $flete_provim = Flete_Provim::where('ID_Student', $detyrim->ID_Student)->first();
-                $flete_provim->delete();
-            }
+        $lenda = $request->lenda;
+        $provim = $this->provimRepository->where('ID_Lenda', $lenda)->first();
+        $fleteProvim = Flete_Provim::where('ID_Provim', $provim->id)
+            ->where('ID_Student', $student)->first();
+        $fleteProvim->update(['nota' => $request->nota]);
 
-            return response()
-                ->json([
-                    'message' => "Detyrimi u perditesua!",
-                    'status' => 200
-                ], 200);
-        } else {
-            return response()
-                ->json([
-                    'message' => "Per kete lende nuk ekziston ende provimi!",
-                    'status' => 200
-                ], 500);
-        }
-
-
+        return response()
+            ->json([
+                'message' => "Nota u vendos!",
+                'status' => 200
+            ], 200);
     }
+
+
 }

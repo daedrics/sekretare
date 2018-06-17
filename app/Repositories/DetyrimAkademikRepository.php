@@ -35,7 +35,7 @@ class DetyrimAkademikRepository
             ->groupBy('students.ID_Grup_Mesimor')
             ->groupBy('lendas.id')
             ->groupBy('pedagogs.id')
-            ->select(['detyrim_akademiks.id','detyrim_akademiks.created_at', 'grup_mesimors.emer_G_M', 'departaments.emer_DEP', 'viti_akademiks.emer_V_A', 'lendas.emer AS emer_lende', 'pedagogs.emer', 'pedagogs.mbiemer'])
+            ->select(['detyrim_akademiks.id', 'detyrim_akademiks.created_at', 'grup_mesimors.emer_G_M', 'departaments.emer_DEP', 'viti_akademiks.emer_V_A', 'lendas.emer AS emer_lende', 'pedagogs.emer', 'pedagogs.mbiemer'])
             ->get();
 
 
@@ -64,7 +64,34 @@ class DetyrimAkademikRepository
 
     public function detyrimeStudent($students)
     {
-        $detyrime = $this->detyrim_Akademik->with('student')->whereIn('id',$students)->get();
+        $detyrime = $this->detyrim_Akademik->with(['student' => function ($query) {
+            $query->with('flete_provim')->get();
+        }])->whereIn('id', $students)->get();
         return $detyrime;
     }
+
+    public function detyrimStudenti()
+    {
+        $detyrime = $this->detyrim_Akademik->where('ID_Student', auth()->user()->student->id)->get();
+        return DataTables::of($detyrime)
+            ->addColumn('lenda', function ($detyrime) {
+                return $detyrime->lenda->emer;
+            })
+            ->addColumn('pedagog', function ($detyrime) {
+                return $detyrime->pedagog->emer . ' ' . $detyrime->pedagog->mbiemer;
+            })
+            ->addColumn('ploteson', function ($detyrime) {
+                return $detyrime->ploteson ? 'Ploteson detyrimin' : 'Nuk ploteson detyrimin';
+            })
+            ->addColumn('nota', function ($detyrime) {
+                if ($detyrime->ploteson) {
+                    $nota = $detyrime->lenda->provim[0]->flete_provim[0]->nota;
+                    return $nota ? $nota : 'Nuk eshte vendosur ende nota!';
+                } else {
+                    return 'Nuk ploteson detyrimin';
+                }
+            })
+            ->make(true);
+    }
+
 }

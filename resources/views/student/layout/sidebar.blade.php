@@ -14,20 +14,9 @@
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{route('pedagog.dashboard')}}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                <li class="{{Request::is('student/dashboard') || Request::is('student/dashboard/*') ? 'active' : ''}}">
+                    <a href="{{route('student.dashboard')}}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                 </li>
-                <h3 class="menu-title">Menaxho</h3><!-- /.menu-title -->
-
-                <li class="{{Request::is('pedagog/detyrime') || Request::is('pedagog/detyrime/*') ? 'active' : ''}}">
-                    <a href="{{route('pedagog.detyrime.index')}}"> <i class="menu-icon fa fa-sticky-note-o"></i>Detyrime
-                        Akademike</a>
-                </li>
-
-                <li class="{{Request::is('pedagog/provim') || Request::is('pedagog/provim/*') ? 'active' : ''}}">
-                    <a href="{{route('pedagog.provim.index')}}"> <i class="menu-icon fa fa-question"></i>Provim</a>
-                </li>
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

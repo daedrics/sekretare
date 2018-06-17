@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Flete_Provim extends Model
 {
+    protected $fillable = ['ID_Provim','ID_Student','nota'];
+
     public function student()
     {
         return $this->belongsTo(Student::class, 'ID_Student');

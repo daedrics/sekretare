@@ -19,7 +19,7 @@ class CreateFleteProvimsTable extends Migration
             $table->foreign('ID_Provim')->references('id')->on('provims')->onDelete('cascade');;
             $table->unsignedInteger('ID_Student');
             $table->foreign('ID_Student')->references('id')->on('students')->onDelete('cascade');;
-            $table->integer('nota');
+            $table->integer('nota')->nullable();
             $table->timestamps();
         });
     }
