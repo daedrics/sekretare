@@ -14,6 +14,7 @@ trait ProvimTrait
     public function getActionButtonsAttribute()
     {
         return $this->getEditButtonAttribute('sekretare.provim.edit') .
-            $this->getDeleteButtonAttribute('sekretare.provim.destroy','provimTable');
+            $this->getDeleteButtonAttribute('sekretare.provim.destroy','provimTable') .
+            $this->getShowButtonAttribute('sekretare.provim.show');
     }
 }

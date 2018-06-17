@@ -133,7 +133,7 @@
 
 <div id="notebook-paper">
     <header>
-        <h1><img class="logo" src="../../../../public/images/upt.png"></h1>
+        <h1><img class="logo" src="{{asset('images/upt.png')}}"></h1>
 
     </header>
     <div id="content">
@@ -142,12 +142,15 @@
         <hr>
         <h2 style="margin-bottom: 10px">Flete Provimi</h2>
         <div class="hipsum">
-            <p style="float: right"><strong>Kryetar:</strong> Pedagog Pedagog</p>
-            <p><strong>Sezoni:</strong> Vjeshte</p>
-            <p style="float: right"><strong>Anetar I:</strong> Pedagog Pedagog</p>
-            <p><strong>Data:</strong> 25/02/2018</p>
-            <p style="float: right"><strong>Anetar II:</strong> Pedagog Pedagog</p>
-            <p><strong>Lenda:</strong> Database</p>
+            <p style="float: right"><strong>Kryetar:</strong> {{$provim->kryetar->emer}} {{$provim->kryetar->mbiemer}}
+            </p>
+            <p><strong>Sezoni:</strong> {{strtoupper($provim->sezoni)}}</p>
+            <p style="float: right"><strong>Anetar I:</strong> {{$provim->anetar1->emer}} {{$provim->anetar1->mbiemer}}
+            </p>
+            <p><strong>Data:</strong> {{$provim->data_provim}}</p>
+            <p style="float: right"><strong>Anetar II:</strong> {{$provim->anetar2->emer}} {{$provim->anetar2->mbiemer}}
+            </p>
+            <p><strong>Lenda:</strong> {{$provim->lenda->emer}}</p>
 
         </div>
 
@@ -162,17 +165,21 @@
                 <th>Nenshkrimi i pedagogut</th>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Redion</td>
-                    <td>Muraj</td>
-                    <td>12/06/2018</td>
-                    <td>9</td>
-                    <td></td>
-                </tr>
+
+                @foreach($flete as  $key => $flet)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{$flet->student->emer}}</td>
+                        <td>{{$flet->student->mbiemer}}</td>
+                        <td>{{$flet->updated_at}}</td>
+                        <td>{{$flet->nota}}</td>
+                        <td></td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
+        <p style="font-size: 16px;margin-top: 10px">Mbyllet me numer rendor {{$flete->count()}}</p>
     </div>
 </div>
 </body>

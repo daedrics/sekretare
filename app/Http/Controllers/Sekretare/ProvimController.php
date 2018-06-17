@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sekretare;
 
 use App\Http\Requests\UserFormRequest;
+use App\Models\Flete_Provim;
 use App\Models\Provim;
 use App\Repositories\LendaRepository;
 use App\Repositories\PedagogRepository;
@@ -103,5 +104,27 @@ class ProvimController extends Controller
     public function dataTable()
     {
         return $this->provimRepository->dataTable();
+    }
+
+    public function show($provim)
+    {
+        $flete_provim = Flete_Provim::where('ID_Provim', $provim)->with('student')->get();
+        $provim = $this->provimRepository->find($provim);
+        $flag = true;
+
+        foreach ($flete_provim as $flete) {
+            if ($flete->nota == null) {
+                $flag = false;
+                break;
+            }
+        }
+        if (!$flag) {
+            return redirect()->back()->withFlashDanger('Per kete provim nuk jane vendosur te gjitha notat!');
+        }
+
+
+        return view('sekretare.provim.show')
+            ->with('flete', $flete_provim)
+            ->with('provim', $provim);
     }
 }

@@ -65,6 +65,7 @@ Route::group([
     /* provim routes */
     Route::get('provim/list', 'ProvimController@dataTable');
     Route::get('provim', 'ProvimController@index')->name('provim.index');
+    Route::get('provim/{provim}', 'ProvimController@show')->name('provim.show');
     Route::post('provim', 'ProvimController@store')->name('provim.store');
     Route::get('provim/{provim}/edit', 'ProvimController@edit')->name('provim.edit');
     Route::get('provim/delete/{provim}', 'ProvimController@destroy')->name('provim.destroy');

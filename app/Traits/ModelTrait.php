@@ -21,10 +21,10 @@ trait ModelTrait
                 </a> ';
     }
 
-    public function getShowButtonAttribute()
+    public function getShowButtonAttribute($route)
     {
-        return '<a href="#"  
-                class="btn btn-xs btn-info btnShow"><i class="fa fa-search"></i></a> ';
+        return '<a href="' . route($route, $this) . '"  target="_blank"
+                class="btn btn-xs btn-success btnShow"><i class="fa fa-search"></i></a> ';
     }
 
 //    public function getRestoreButtonAttribute($route, $activeTable, $deletedTable)
