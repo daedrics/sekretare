@@ -35,6 +35,7 @@
                 </div>
                 {{ Form::open(['route'=>'sekretare.student.store', 'method'=>'post']) }}
                 <div class="card-body card-block">
+
                     <div class="row form-group">
 
                         <div class="col-4">
@@ -57,13 +58,62 @@
 
                         <div class="col-4">
                             <div class="form-group">
-                                {!! Form::label('role', 'Roli') !!}
-                                {!! Form::select('role', ['' => 'Zgjidh...'] + ['pedagog'=>'Pedagog','student'=>'Student'],null, ['class' => 'select2 form-control']) !!}
-                                @if($errors->first('role')) <span
-                                        class="text text-danger">{{ $errors->first('role') }}</span> @endif
+                                {!! Form::label('ID_Grup_Mesimor', 'Grupi Mesimor') !!}
+                                {!! Form::select('ID_Grup_Mesimor', ['' => 'Zgjidh...'] + $grupe ,null, ['class' => 'select2 form-control']) !!}
+                                @if($errors->first('ID_Grup_Mesimor')) <span
+                                        class="text text-danger">{{ $errors->first('ID_Grup_Mesimor') }}</span> @endif
                             </div>
                         </div>
                     </div>
+
+                    <div class="row form-group">
+
+                        <div class="col-3">
+                            <div class="form-group">
+                                {!! Form::label('emer', 'Emer', ['class' => 'form-control-label']) !!}
+                                {!! Form::text('emer', null, ['class' => 'form-control','id'=>'emer','placeholder' =>'Emer']) !!}
+                                @if($errors->first('emer')) <span
+                                        class="text text-danger">{{ $errors->first('emer') }}</span> @endif
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="form-group">
+                                {!! Form::label('mbiemer', 'Mbiemer', ['class' => 'form-control-label']) !!}
+                                {!! Form::text('mbiemer', null, ['class' => 'form-control','id'=>'mbiemer','placeholder' =>'Mbiemer']) !!}
+                                @if($errors->first('mbiemer')) <span
+                                        class="text text-danger">{{ $errors->first('mbiemer') }}</span> @endif
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                {{ Form::label('ditelindje', 'Ditelindje')}}
+                                <div class='input-group date' id='ditelindje'>
+                                    <input type='text' placeholder="Ditelindje" value="{{ old('ditelindje') }}" name="ditelindje" class="form-control"/>
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                {{ Form::label('data_regjistrim', 'Date Regjistrim')}}
+                                <div class='input-group date' id='date_regjistrim'>
+                                    <input type='text' placeholder="Date Regjistrim" value="{{ old('data_regjistrim') }}" name="data_regjistrim"
+                                           class="form-control"/>
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm">
@@ -82,12 +132,16 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped" id="usersTable">
+                    <table class="table table-striped" id="studentTable">
                         <thead>
                         <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Roli</th>
+                            <th scope="col">Emer</th>
+                            <th scope="col">Mbiemer</th>
+                            <th scope="col">Grupi</th>
+                            <th scope="col">Ditelindja</th>
+                            <th scope="col">Regjistruar me</th>
+                            <th scope="col">Veprime</th>
                             <th scope="col">Krijuar me</th>
                         </tr>
                         </thead>
@@ -106,20 +160,40 @@
 
 
 @section('scripts')
+
+    <script>
+        $(function () {
+            $('#ditelindje, #date_regjistrim').datetimepicker({
+                format: 'YYYY-MM-DD'
+            });
+
+            $('.select2').select2({
+                placeholder: 'Zgjidh...'
+            });
+
+
+        });
+    </script>
+
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#usersTable').DataTable({
+
+        $(document).ready(function () {
+            $('#studentTable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: APP_URL + '/sekretare/student/list',
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'email', name: 'email'},
-                    {data: 'role', name: 'role'},
+                    {data: 'emer', name: 'emer'},
+                    {data: 'mbiemer', name: 'mbiemer'},
+                    {data: 'grupi', name: 'grupi'},
+                    {data: 'ditelindje', name: 'ditelindje'},
+                    {data: 'data_regjistrim', name: 'data_regjistrim'},
+                    {data: 'actions', name: 'actions'},
                     {data: 'created_at', name: 'created_at'}
                 ]
             });
-        } );
+        });
     </script>
 
 @endsection

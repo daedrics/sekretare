@@ -23,6 +23,12 @@ class FakultetRepository
         return call_user_func_array(array($this->fakultet, $method), $args);
     }
 
+    public function toArray()
+    {
+        $fakultete = $this->all()->pluck('emer_FAKUL', 'id')->toArray();
+        return $fakultete;
+    }
+
     public function store($request)
     {
         $data = $request->all();
@@ -34,7 +40,7 @@ class FakultetRepository
     {
         $fakultete = $this->fakultet->with('universitet')->get();
         return DataTables::of($fakultete)
-            ->addColumn('actions',function ($fakultete){
+            ->addColumn('actions', function ($fakultete) {
                 return $fakultete->action_buttons;
             })
             ->rawColumns(['actions'])

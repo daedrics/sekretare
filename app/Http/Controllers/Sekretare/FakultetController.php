@@ -9,11 +9,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Kamaln7\Toastr\Facades\Toastr;
 
+/**
+ * Class FakultetController
+ * @package App\Http\Controllers\Sekretare
+ */
 class FakultetController extends Controller
 {
     protected $fakultetRepository;
 
 
+    /**
+     * FakultetController constructor.
+     * @param FakultetRepository $fakultetRepository
+     */
     public function __construct(FakultetRepository $fakultetRepository)
     {
         $this->fakultetRepository = $fakultetRepository;
@@ -30,16 +38,6 @@ class FakultetController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param UserFormRequest|Request $request
@@ -52,23 +50,6 @@ class FakultetController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Fakultet $fakultet)
     {
         return view('sekretare.fakultet.edit')
@@ -79,8 +60,9 @@ class FakultetController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param Fakultet $fakultet
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function update(Request $request, Fakultet $fakultet)
     {
@@ -92,12 +74,18 @@ class FakultetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param Fakultet $fakultet
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Fakultet $fakultet)
     {
-        //
+        $fakultet->delete();
+        return response()
+            ->json([
+                'message' => "Fakulteti u fshi me sukses!",
+                'status' => 200
+            ], 200);
     }
 
     public function dataTable()

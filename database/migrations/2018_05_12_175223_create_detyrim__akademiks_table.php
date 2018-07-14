@@ -13,14 +13,14 @@ class CreateDetyrimAkademiksTable extends Migration
      */
     public function up()
     {
-        Schema::create('detyrim__akademiks', function (Blueprint $table) {
+        Schema::create('detyrim_akademiks', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('ID_Pedagog');
-            $table->foreign('ID_Pedagog')->references('id')->on('pedagogs');
+            $table->foreign('ID_Pedagog')->references('id')->on('pedagogs')->onDelete('cascade');;
             $table->unsignedInteger('ID_Student');
-            $table->foreign('ID_Student')->references('id')->on('students');
+            $table->foreign('ID_Student')->references('id')->on('students')->onDelete('cascade');;
             $table->unsignedInteger('ID_Lenda');
-            $table->foreign('ID_Lenda')->references('id')->on('lendas');
+            $table->foreign('ID_Lenda')->references('id')->on('lendas')->onDelete('cascade');;
             $table->boolean('ploteson');
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ class CreateDetyrimAkademiksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detyrim__akademiks');
+        Schema::dropIfExists('detyrim_akademiks');
     }
 }

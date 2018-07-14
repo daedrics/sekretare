@@ -16,7 +16,7 @@ class CreateDepartamentsTable extends Migration
         Schema::create('departaments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('ID_Fakultet');
-            $table->foreign('ID_Fakultet')->references('id')->on('fakultets');
+            $table->foreign('ID_Fakultet')->references('id')->on('fakultets')->onDelete('cascade');;
             $table->string('emer_DEP');
             $table->timestamps();
         });

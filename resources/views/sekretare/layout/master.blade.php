@@ -10,12 +10,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <title>Sekretari</title>
+    <meta name="description" content="Sekretari">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="{{asset('images/education.png')}}">
 
     <link rel="stylesheet" href="{{asset('assets/css/normalize.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -25,9 +24,13 @@
     <link rel="stylesheet" href="{{asset('assets/css/cs-skin-elastic.css')}}">
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
     <link rel="stylesheet" href="{{asset('assets/scss/style.css')}}">
-    <link href="{{asset('assets/css/lib/vector-map/jqvmap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/lib/datatable/dataTables.bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('assets/js/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/bootstrap-sweetalert/dist/sweetalert.css') }}">
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/myStyles.css')}}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <script>
@@ -55,8 +58,11 @@
 <!-- Header-->
 
     @yield('breadcrumb')
-    <div class="content mt-3">
-        @yield('content')
+
+    <div class="animated {{Request::is('sekretare/grupMesimor')  ? '' : 'fadeIn'}}">
+        <div class="content  mt-3">
+            @yield('content')
+        </div>
     </div>
 </div><!-- /#right-panel -->
 
@@ -77,8 +83,13 @@
 <script src="{{asset('assets/js/lib/data-table/buttons.print.min.js')}}"></script>
 <script src="{{asset('assets/js/lib/data-table/buttons.colVis.min.js')}}"></script>
 <script src="{{asset('assets/js/lib/data-table/datatables-init.js')}}"></script>
-
+<script src="{{ asset('assets/js/moment/min/moment.min.js') }}"></script>
+<script src="{{ asset('assets/js/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ asset('assets/js/select2/dist/js/select2.full.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-sweetalert/dist/sweetalert.min.js') }}"></script>
 <script src="{{asset('js/toastr.min.js')}}"></script>
+<script src="{{asset('js/myScripts.js')}}"></script>
+
 @yield('scripts')
 
 @if(session()->get('flash_danger'))

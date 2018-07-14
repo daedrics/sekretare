@@ -17,9 +17,9 @@ class CreateGrupMesimorsTable extends Migration
             $table->increments('id');
             $table->string('emer_G_M');
             $table->unsignedInteger('ID_Departament');
-            $table->foreign('ID_Departament')->references('id')->on('departaments');
+            $table->foreign('ID_Departament')->references('id')->on('departaments')->onDelete('cascade');;
             $table->unsignedInteger('ID_Viti_Akademik');
-            $table->foreign('ID_Viti_Akademik')->references('id')->on('viti_akademiks');
+            $table->foreign('ID_Viti_Akademik')->references('id')->on('viti_akademiks')->onDelete('cascade');;
             $table->timestamps();
         });
     }

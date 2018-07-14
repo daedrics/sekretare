@@ -2,11 +2,19 @@
 
 namespace App\Models;
 
+use App\Traits\ModelTrait;
+use App\Traits\StudentTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+
+    use ModelTrait;
+    use StudentTrait;
+
+    protected $fillable = ['emer', 'mbiemer', 'ditelindje', 'data_regjistrim', 'ID_Grup_Mesimor', 'ID_User'];
+
     public function grup_mesimor()
     {
         return $this->belongsTo(Grup_Mesimor::class, 'ID_Grup_Mesimor');

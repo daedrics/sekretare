@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Sekretare;
 
 use App\Http\Requests\UserFormRequest;
+use App\Models\Student;
+use App\Repositories\GrupMesimorRepository;
+use App\Repositories\StudentRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,11 +14,17 @@ use Kamaln7\Toastr\Facades\Toastr;
 class StudentController extends Controller
 {
     protected $studentRepository;
+    protected $userRepository;
+    protected $grupMesimorRepository;
 
 
-    public function __construct(UserRepository $studentRepository)
+    public function __construct(StudentRepository $studentRepository,
+                                UserRepository $userRepository,
+                                GrupMesimorRepository $grupMesimorRepository)
     {
         $this->studentRepository = $studentRepository;
+        $this->userRepository = $userRepository;
+        $this->grupMesimorRepository = $grupMesimorRepository;
     }
 
     /**
@@ -25,17 +34,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('sekretare.student.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('sekretare.student.index')
+            ->with('grupe', $this->grupMesimorRepository->toArray());
     }
 
     /**
@@ -44,60 +44,62 @@ class StudentController extends Controller
      * @param UserFormRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-
-        Toastr::success('User-i u krijua me sukses');
+        $this->userRepository->createStudent($request);
+        Toastr::success('Studenti u krijua me sukses');
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Student $student
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(Student $student)
     {
-        //
+        return view('sekretare.student.edit')
+            ->with('student', $student)
+            ->with('grupe', $this->grupMesimorRepository->toArray());
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UserFormRequest|Request $request
+     * @param $student
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(UserFormRequest $request, $student)
     {
-        //
+        $this->studentRepository->update($request, $student);
+        Toastr::success('Studenti u perditesua me sukses');
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Student $student
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        $student->user()->delete();
+        return response()
+            ->json([
+                'message' => "Studenti u fshi me sukses!",
+                'status' => 200
+            ], 200);
+
     }
 
     public function dataTable()
     {
-
+        return $this->studentRepository->dataTable();
     }
 }

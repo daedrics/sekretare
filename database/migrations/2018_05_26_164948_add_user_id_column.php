@@ -15,7 +15,7 @@ class AddUserIdColumn extends Migration
     {
         Schema::table('pedagogs', function ($table){
             $table->unsignedInteger('ID_User');
-            $table->foreign('ID_User')->references('id')->on('users');
+            $table->foreign('ID_User')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

@@ -81,6 +81,11 @@ fieldset[disabled] a.btn {
 // Link buttons
 //
 
+.btn-xs {
+  // line-height: ensure proper height of button next to extra small input
+  @include button-size($padding-y, $padding-x, $font-size, $line-height, $border-radius);
+}
+
 // Make a button look and behave like a link
 .btn-link {
   font-weight: $font-weight-normal;
