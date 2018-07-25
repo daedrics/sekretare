@@ -37,7 +37,7 @@
     <div class="container">
         <div class="login-content">
             <div class="login-logo">
-                <a href="index.html">
+                <a href="#">
                     <img class="align-content" style="width: 40%; height: auto" src="{{asset('images/upt.png')}}" alt="">
                 </a>
             </div>
